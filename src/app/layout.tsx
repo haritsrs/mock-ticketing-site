@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Home, User, Ticket, Calendar } from 'lucide-react';
+import Link from 'next/link';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,7 +29,57 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex min-h-screen bg-gradient-to-b from-purple-900 to-black">
+          {/* Sidebar */}
+          <nav className="w-64 border-r border-white/20 bg-black/20 backdrop-blur-sm">
+            <div className="p-6">
+              <h1 className="text-2xl font-bold text-white mb-8">KonserKita</h1>
+              <ul className="space-y-4">
+                <li>
+                  <Link 
+                    href="/"
+                    className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg p-3 transition-colors"
+                  >
+                    <Home size={20} />
+                    <span>Beranda</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/profile"
+                    className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg p-3 transition-colors"
+                  >
+                    <User size={20} />
+                    <span>Profil</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/my-tickets"
+                    className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg p-3 transition-colors"
+                  >
+                    <Ticket size={20} />
+                    <span>Tiket Saya</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/schedule"
+                    className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg p-3 transition-colors"
+                  >
+                    <Calendar size={20} />
+                    <span>Jadwal</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          {/* Main Content */}
+          <main className="flex-1">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
