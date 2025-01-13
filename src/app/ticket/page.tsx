@@ -205,7 +205,8 @@ const ConcertSeating: React.FC = () => {
           <div>
             <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg">
               <div className="p-6">
-                <h2 className="text-2xl font-semibold">Pilih Tiket</h2>
+              <h2 className="text-2xl font-semibold">Pilih Tiket</h2>
+              <p className="text-gray-400 text-sm">Pilih jenis tiket yang ingin kamu pilih</p>
               </div>
               <div className="p-6 pt-0">
                 <div className="space-y-4">

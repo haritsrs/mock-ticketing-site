@@ -87,16 +87,16 @@ const ProfilePage = () => {
           <div className="space-y-4">
             <div>
               <label className="text-gray-400">Language</label>
-              <select className="w-full bg-white/10 rounded p-2 mt-1">
-                <option>Bahasa Indonesia</option>
-                <option>English</option>
+              <select className="w-full bg-transparent border border-white/20 text-white rounded p-2 mt-1 focus:border-purple-500 focus:outline-none">
+                <option className="bg-gray-900">Bahasa Indonesia</option>
+                <option className="bg-gray-900">English</option>
               </select>
             </div>
             <div>
               <label className="text-gray-400">Time Zone</label>
-              <select className="w-full bg-white/10 rounded p-2 mt-1">
-                <option>Asia/Jakarta (GMT+7)</option>
-                <option>Asia/Singapore (GMT+8)</option>
+              <select className="w-full bg-transparent border border-white/20 text-white rounded p-2 mt-1 focus:border-purple-500 focus:outline-none">
+                <option className="bg-gray-900">Asia/Jakarta (GMT+7)</option>
+                <option className="bg-gray-900">Asia/Singapore (GMT+8)</option>
               </select>
             </div>
           </div>

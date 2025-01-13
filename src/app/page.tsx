@@ -201,7 +201,7 @@ const ChatAssistant: React.FC<{
   onInputChange: (value: string) => void;
   onSendMessage: () => void;
 }> = ({ isOpen, onClose, messages, isThinking, userInput, onInputChange, onSendMessage }) => (
-  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg w-96 shadow-xl">
+  <div className="bg-black/10 backdrop-blur-md border border-white/20 rounded-lg w-96 shadow-xl">
     <div className="p-4 border-b border-white/20 flex justify-between items-center">
       <h3 className="font-semibold">KonserKita AI Assistant</h3>
       <button onClick={onClose} className="text-gray-400 hover:text-white">
