@@ -70,7 +70,6 @@ const CalendarSchedulePage: React.FC = () => {
     }
   ];
 
-  // Calendar data
   const daysInMonth = 28; // February 2025
   const firstDayOfMonth = 5; // Friday
   const days: number[] = [...Array(daysInMonth + firstDayOfMonth).keys()];
@@ -82,7 +81,7 @@ const CalendarSchedulePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-900 to-black text-white">
       <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-8 px-40">
           <h1 className="text-3xl font-bold">Jadwal Konser</h1>
           <div className="flex items-center gap-4">
             <button className="p-2 rounded-full hover:bg-white/10">
@@ -96,8 +95,8 @@ const CalendarSchedulePage: React.FC = () => {
         </div>
 
         {/* Calendar Grid */}
-        <div className="mb-8">
-          <div className="grid grid-cols-7 gap-2 mb-4">
+        <div className="mb-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-7 gap-2 mb-3">
             {['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'].map(day => (
               <div key={day} className="text-center text-purple-400 font-semibold p-2">
                 {day}
@@ -110,13 +109,13 @@ const CalendarSchedulePage: React.FC = () => {
               const concert = getConcertForDay(day);
               
               if (index < firstDayOfMonth || day > daysInMonth) {
-                return <div key={index} className="aspect-square"></div>;
+                return <div key={index} className="h-24"></div>;
               }
 
               return (
                 <div
                   key={index}
-                  className={`aspect-square p-2 rounded-lg border ${
+                  className={`h-24 p-2 rounded-lg border ${
                     concert
                       ? concert.attending
                         ? 'border-purple-400 bg-purple-600/30 cursor-pointer hover:bg-purple-600/40'
@@ -127,7 +126,7 @@ const CalendarSchedulePage: React.FC = () => {
                 >
                   <div className="text-sm mb-1">{day}</div>
                   {concert && (
-                    <div className="text-xs">
+                    <div className="text-sm">
                       <div className="font-semibold truncate">{concert.artist}</div>
                       <div className="text-purple-400">{concert.time}</div>
                     </div>

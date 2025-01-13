@@ -25,13 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased m-0 min-h-full`}
       >
-        <div className="flex min-h-screen bg-gradient-to-b from-purple-900 to-black">
+        <div className="flex min-h-screen bg-gradient-to-b from-purple-900 to-black fixed inset-0">
           {/* Sidebar */}
-          <nav className="w-64 border-r border-white/20 bg-black/20 backdrop-blur-sm">
+          <nav className="w-48 border-r border-white/20 bg-black/20 backdrop-blur-sm">
             <div className="p-6">
               <h1 className="text-2xl font-bold text-white mb-8">KonserKita</h1>
               <ul className="space-y-4">
@@ -76,7 +76,7 @@ export default function RootLayout({
           </nav>
 
           {/* Main Content */}
-          <main className="flex-1">
+          <main className="flex-1 p-6 overflow-auto">
             {children}
           </main>
         </div>

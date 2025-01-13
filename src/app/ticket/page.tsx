@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { MinusCircle, PlusCircle, Info, Calendar, MapPin } from 'lucide-react';
-import PaymentDialog from '../../utils/PaymentDialog';
+import PaymentDialog from './PaymentDialog';
 
 interface ConcertInfo {
   artist: string;
