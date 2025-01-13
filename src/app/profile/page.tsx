@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { User, Ticket, Star, Bell, CreditCard, LogOut } from 'lucide-react';
+import { User, Settings, Star, Bell, CreditCard, LogOut } from 'lucide-react';
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState('profile');
@@ -11,28 +11,6 @@ const ProfilePage = () => {
     email: "harits@gmail.com",
     joinDate: "January 2025",
     profileImage: "/img/profil.jpg",
-    upcomingBookings: [
-      {
-        id: 1,
-        artist: "Tulus",
-        date: "15 Feb 2025",
-        venue: "Gelora Bung Karno, Jakarta",
-        ticketType: "VIP",
-        price: "Rp 750.000",
-        status: "Confirmed"
-      }
-    ],
-    pastBookings: [
-      {
-        id: 2,
-        artist: "Raisa",
-        date: "10 Dec 2024",
-        venue: "ICE BSD, Tangerang",
-        ticketType: "Regular",
-        price: "Rp 500.000",
-        status: "Completed"
-      }
-    ],
     reviews: [
       {
         id: 1,
@@ -101,50 +79,77 @@ const ProfilePage = () => {
     </div>
   );
 
-  const renderBookingsContent = () => (
+  const renderSettingsContent = () => (
     <div className="space-y-6">
-      <div>
-        <h3 className="text-xl font-semibold mb-4">Booking Mendatang</h3>
-        {mockUser.upcomingBookings.map(booking => (
-          <div key={booking.id} className="bg-white/5 rounded-lg p-6 mb-4">
-            <div className="flex justify-between items-start">
-              <div>
-                <h4 className="text-lg font-semibold">{booking.artist}</h4>
-                <p className="text-gray-400">{booking.date}</p>
-                <p className="text-gray-400">{booking.venue}</p>
-                <p className="mt-2">Tiket: {booking.ticketType}</p>
-              </div>
-              <div className="text-right">
-                <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">
-                  {booking.status}
-                </span>
-                <p className="mt-2 text-purple-400">{booking.price}</p>
-              </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white/5 rounded-lg p-6">
+          <h3 className="text-lg font-semibold mb-4">Account Settings</h3>
+          <div className="space-y-4">
+            <div>
+              <label className="text-gray-400">Language</label>
+              <select className="w-full bg-white/10 rounded p-2 mt-1">
+                <option>Bahasa Indonesia</option>
+                <option>English</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-gray-400">Time Zone</label>
+              <select className="w-full bg-white/10 rounded p-2 mt-1">
+                <option>Asia/Jakarta (GMT+7)</option>
+                <option>Asia/Singapore (GMT+8)</option>
+              </select>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
 
-      <div>
-        <h3 className="text-xl font-semibold mb-4">Booking Selesai</h3>
-        {mockUser.pastBookings.map(booking => (
-          <div key={booking.id} className="bg-white/5 rounded-lg p-6 mb-4">
-            <div className="flex justify-between items-start">
-              <div>
-                <h4 className="text-lg font-semibold">{booking.artist}</h4>
-                <p className="text-gray-400">{booking.date}</p>
-                <p className="text-gray-400">{booking.venue}</p>
-                <p className="mt-2">Tiket: {booking.ticketType}</p>
-              </div>
-              <div className="text-right">
-                <span className="bg-gray-500/20 text-gray-400 px-3 py-1 rounded-full text-sm">
-                  {booking.status}
-                </span>
-                <p className="mt-2 text-purple-400">{booking.price}</p>
+        <div className="bg-white/5 rounded-lg p-6">
+          <h3 className="text-lg font-semibold mb-4">Security Settings</h3>
+          <div className="space-y-4">
+            <div>
+              <label className="text-gray-400">Two-Factor Authentication</label>
+              <div className="flex items-center justify-between mt-2">
+                <span className="text-sm">Enable 2FA for added security</span>
+                <button className="bg-purple-600 text-white rounded px-4 py-2">
+                  Enable
+                </button>
               </div>
             </div>
+            <div>
+              <label className="text-gray-400">Password</label>
+              <button className="w-full bg-white/10 text-left rounded p-2 mt-1">
+                Change Password
+              </button>
+            </div>
           </div>
-        ))}
+        </div>
+
+        <div className="bg-white/5 rounded-lg p-6">
+          <h3 className="text-lg font-semibold mb-4">Notification Preferences</h3>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <span>Email Notifications</span>
+              <input type="checkbox" className="toggle" defaultChecked />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>SMS Notifications</span>
+              <input type="checkbox" className="toggle" defaultChecked />
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Marketing Communications</span>
+              <input type="checkbox" className="toggle" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white/5 rounded-lg p-6">
+          <h3 className="text-lg font-semibold mb-4">Delete Account</h3>
+          <p className="text-gray-400 mb-4">
+            Once you delete your account, there is no going back. Please be certain.
+          </p>
+          <button className="bg-red-600/20 text-red-400 rounded px-4 py-2 hover:bg-red-600/30">
+            Delete Account
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -200,7 +205,7 @@ const ProfilePage = () => {
         <div className="flex gap-4 mb-8 border-b border-white/10">
           {[
             { id: 'profile', label: 'Profil', icon: User },
-            { id: 'bookings', label: 'Booking', icon: Ticket },
+            { id: 'settings', label: 'Settings', icon: Settings },
             { id: 'reviews', label: 'Ulasan', icon: Star },
             { id: 'notifications', label: 'Notifikasi', icon: Bell }
           ].map(tab => (
@@ -221,7 +226,7 @@ const ProfilePage = () => {
 
         <div className="py-6">
           {activeTab === 'profile' && renderProfileContent()}
-          {activeTab === 'bookings' && renderBookingsContent()}
+          {activeTab === 'settings' && renderSettingsContent()}
           {activeTab === 'reviews' && renderReviewsContent()}
           {activeTab === 'notifications' && renderNotificationsContent()}
         </div>
