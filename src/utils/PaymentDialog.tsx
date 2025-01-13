@@ -1,15 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { CreditCard, Wallet, Building, X } from 'lucide-react';
 
-const PaymentDialog = ({ isOpen, onClose, selectedSeats, sections, calculateTotal }) => {
-  const [paymentMethod, setPaymentMethod] = useState('credit-card');
+interface Section {
+  name: string;
+  price: number;
+}
+
+interface PaymentMethod {
+  id: 'credit-card' | 'e-wallet' | 'bank-transfer';
+  title: string;
+  description: string;
+  icon: React.FC<{ className?: string }>;
+}
+
+interface PaymentDialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+  selectedSeats: Record<string, number>;
+  sections: Record<string, Section>;
+  calculateTotal: () => number;
+}
+
+const PaymentDialog: React.FC<PaymentDialogProps> = ({ 
+  isOpen, 
+  onClose, 
+  selectedSeats, 
+  sections, 
+  calculateTotal 
+}) => {
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod['id']>('credit-card');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
   // Handle escape key press
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     
@@ -34,7 +60,7 @@ const PaymentDialog = ({ isOpen, onClose, selectedSeats, sections, calculateTota
     };
   }, [isOpen]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
     
@@ -45,7 +71,7 @@ const PaymentDialog = ({ isOpen, onClose, selectedSeats, sections, calculateTota
     }, 2000);
   };
 
-  const paymentMethods = [
+  const paymentMethods: PaymentMethod[] = [
     {
       id: 'credit-card',
       title: 'Kartu Kredit/Debit',
@@ -82,6 +108,7 @@ const PaymentDialog = ({ isOpen, onClose, selectedSeats, sections, calculateTota
         <button
           onClick={onClose}
           className="absolute right-4 top-4 p-1 hover:text-purple-400 transition-colors"
+          type="button"
         >
           <X size={20} />
         </button>
@@ -162,7 +189,7 @@ const PaymentDialog = ({ isOpen, onClose, selectedSeats, sections, calculateTota
                     name="payment-method"
                     value={id}
                     checked={paymentMethod === id}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    onChange={(e) => setPaymentMethod(e.target.value as PaymentMethod['id'])}
                     className="text-purple-500 focus:ring-purple-500 focus:ring-offset-0"
                   />
                   <Icon className="h-5 w-5" />
