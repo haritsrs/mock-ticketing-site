@@ -13,10 +13,11 @@ interface PaymentMethod {
   icon: React.FC<{ className?: string }>;
 }
 
+
 interface PaymentDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  selectedSeats: Record<string, number>;
+  selectedSeats: Partial<Record<string, number>>;
   sections: Record<string, Section>;
   calculateTotal: () => number;
 }
@@ -155,7 +156,7 @@ const PaymentDialog: React.FC<PaymentDialogProps> = ({
           {/* Order Summary */}
           <div className="bg-white/10 rounded-lg p-4 space-y-2">
             <h3 className="font-semibold">Ringkasan Pesanan</h3>
-            {Object.entries(selectedSeats).map(([sectionId, quantity]) => (
+            {Object.entries(selectedSeats).map(([sectionId, quantity = 0]) => (
               quantity > 0 && (
                 <div key={sectionId} className="flex justify-between text-sm">
                   <span>{sections[sectionId].name} × {quantity}</span>

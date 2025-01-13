@@ -26,6 +26,7 @@ interface Sections {
   festivalA: Section;
   festivalB: Section;
   tribune: Section;
+  [key: string]: Section;
 }
 
 type SectionId = keyof Sections;
